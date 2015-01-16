@@ -5,7 +5,7 @@ import java.util.Dictionary;
  */
 public class League {
 
-    private Dictionary<Integer,LeagueYear> _years;
+    private Dictionary<Integer, LeagueYear> _years;
 
     public void addYear(int year) {
         LeagueYear temp = new LeagueYear(year);
