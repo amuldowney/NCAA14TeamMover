@@ -1,5 +1,6 @@
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -47,5 +48,9 @@ public class LeagueYear {
     private MoverUtils.ConferenceNames randomName() {
         int pick = new Random().nextInt(MoverUtils.ConferenceNames.values().length);
         return MoverUtils.ConferenceNames.values()[pick];
+    }
+
+    public void addConferencedTeams(List<Team> teams) {
+        teams.forEach(team ->_conferences.get(MoverUtils.byID(team.get_conferenceId())).addTeam(team));
     }
 }

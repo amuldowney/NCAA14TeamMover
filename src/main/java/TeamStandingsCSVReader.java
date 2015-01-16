@@ -8,10 +8,6 @@ import java.io.Reader;
  * Created by Clues on 1/16/15.
  */
 public class TeamStandingsCSVReader {
-
-
-
-
     public LeagueYear ReadInTeamStandings(String fileLocation) throws  Exception{
         Reader in = new FileReader("TestData/TeamStandings_CBKool.csv");
         Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader().parse(in);

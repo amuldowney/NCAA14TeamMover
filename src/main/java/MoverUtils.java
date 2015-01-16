@@ -18,16 +18,16 @@ public class MoverUtils {
         Independent(5),
         FCS(17);
 
-    public int conferenceID;
+        public int conferenceID;
 
-        ConferenceNames(int i){
+        ConferenceNames(int i) {
             conferenceID = i;
         }
     }
 
-    public ConferenceNames byID(int i){
+    public static ConferenceNames byID(int i) {
         for (ConferenceNames conferenceNames : ConferenceNames.values()) {
-            if( conferenceNames.conferenceID == i){
+            if (conferenceNames.conferenceID == i) {
                 return conferenceNames;
             }
         }
@@ -35,4 +35,47 @@ public class MoverUtils {
     }
 
     public enum CSVHeaders {TeamName, confRec, confStanding, coachPollRank, divStanding, overallRec, pointsAgainst, pointsFor, winPercent}
+
+    public enum AllTeamsThing {
+        id,
+        name,
+        logoUrl,
+        nickName,
+        shortName,
+        conferenceId,
+        color,
+        overallRating,
+        offenseRating,
+        defenseRating,
+        specialTeamRating,
+        coachPollRank,
+        overallRec,
+        confRec
+    }
+
+    /*
+        "isUserTeam": false,
+            "isMyTeam": false,
+            "isFriendsTeam": false,
+            "id": 1,
+            "name": "Air Force",
+            "logoUrl": "\/dynasty\/bundles\/ncaaonlinedynasty14\/images\/logos\/teams\/45px\/team1.png",
+            "logoId": 0,
+            "nickName": "Falcons",
+            "shortName": "AF",
+            "conferenceId": 7,
+            "divisionId": 3,
+            "color": "27458e",
+            "overallRating": "C",
+            "offenseRating": "B",
+            "defenseRating": "C-",
+            "specialTeamRating": "B-",
+            "personaName": null,
+            "nucleusPersonaId": null,
+            "coachPollRank": null,
+            "coachPollRankSortIndex": 10000,
+            "overallRec": "2-1",
+            "overallRecSortIndex": 2001,
+            "confRec": "2-0"
+     */
 }

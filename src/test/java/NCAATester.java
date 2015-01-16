@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -16,7 +19,7 @@ public class NCAATester {
     @org.junit.Test
     public void testLeague() throws Exception {
 
-        League amuls = new League();
+        League amuls = new League(2000);
 
         amuls.addYear(2015);
 
@@ -57,8 +60,30 @@ public class NCAATester {
         EASportsDynastyScraper scraper = new EASportsDynastyScraper();
 
         scraper.Login();
-        scraper.GetAllTeamData();
+        List<Team> teams = scraper.GetAllTeamData();
+        League league = new League(2014);
+        league.getYear(2014).addConferencedTeams(teams);
+        assert teams.size() > 0;
+    }
 
+    @Test
+    public void testSorting() throws Exception {
+        List<OVRRating> overs = new ArrayList<>();
+
+        overs.add(new OVRRating("A"));
+        overs.add(new OVRRating("B"));
+        overs.add(new OVRRating("C"));
+        overs.add(new OVRRating("D"));
+        overs.add(new OVRRating("A-"));
+        overs.add(new OVRRating("B-"));
+        overs.add(new OVRRating("C-"));
+        overs.add(new OVRRating("D-"));
+        overs.add(new OVRRating("A+"));
+        overs.add(new OVRRating("B+"));
+        overs.add(new OVRRating("C+"));
+        overs.add(new OVRRating("D+"));
+
+        Collections.sort(overs);
     }
 
     @Test
@@ -87,6 +112,9 @@ public class NCAATester {
         } catch (JauntException e) {         //if an HTTP/connection error occurs, handle JauntException.
             System.err.println(e);
         }
+
+
+
 
 
 

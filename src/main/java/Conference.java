@@ -30,6 +30,7 @@ public class Conference {
     }
 
     public void addTeam(Team team) {
+        team.set_conferenceIn(this);
         _teams.add(team);
     }
 
@@ -37,9 +38,9 @@ public class Conference {
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.format("%s (%d)",_name,_teams.size()));
+        sb.append(String.format("%s (%d) [",_name,_teams.size()));
         _teams.forEach(team -> sb.append(team));
-
+        sb.append("]");
         return sb.toString();
     }
 }
