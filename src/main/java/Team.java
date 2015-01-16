@@ -9,6 +9,12 @@ public class Team {
     private int _record;
     private int _standing;
 
+    public Team(String _teamName, int _record, int _standing) {
+        this._teamName = _teamName;
+        this._record = _record;
+        this._standing = _standing;
+    }
+
     public int get_record() {
         return _record;
     }

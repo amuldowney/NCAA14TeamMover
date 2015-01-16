@@ -4,6 +4,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.Reader;
 
+
 /**
  * Created by Clues on 1/15/15.
  */
@@ -30,12 +31,14 @@ public class NCAATester {
 
     @org.junit.Test
     public void testCSV() throws Exception {
-        Reader in = new FileReader("path/to/file.csv");
-        Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
+        Reader in = new FileReader("TestData/TeamStandings_CBKool.csv");
+        Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader().parse(in);
         for (CSVRecord record : records) {
-            String lastName = record.get("Last Name");
-            String firstName = record.get("First Name");
-        }
+            String teamName = record.get(MoverUtils.CSVHeaders.TeamName);
+            String teamRec = record.get(MoverUtils.CSVHeaders.overallRec);
+            String teamStanding = record.get(MoverUtils.CSVHeaders.coachPollRank);
 
+            Team nTeam = new Team(teamName,Integer.parseInt(teamRec),Integer.parseInt(teamStanding));
+        }
     }
 }
