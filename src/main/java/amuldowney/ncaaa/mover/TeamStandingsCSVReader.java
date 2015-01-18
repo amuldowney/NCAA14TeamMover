@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -21,7 +23,6 @@ public class TeamStandingsCSVReader {
             Team nTeam = new Team(teamName, teamRec, teamStanding);
             yr.AddTeamWherever(nTeam);
         }
-
         return yr;
     }
 }

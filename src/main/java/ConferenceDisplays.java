@@ -1,3 +1,6 @@
+import amuldowney.ncaaa.mover.League;
+import amuldowney.ncaaa.mover.Team;
+
 import javax.swing.*;
 
 /**

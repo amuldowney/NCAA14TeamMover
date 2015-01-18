@@ -1,9 +1,11 @@
+package amuldowney.ncaaa.mover;
+
 import javax.json.JsonObject;
 
 /**
  * Created by Clues on 1/15/15.
  */
-public class Team {
+public class Team implements Comparable<Team>{
 
     private String _teamName;
     private Conference _conferenceIn;
@@ -16,15 +18,15 @@ public class Team {
     private OVRRating _specialTeamsOvr;
 
     public Team(JsonObject result) {
-        _teamName = result.getString(MoverUtils.AllTeamsThing.name.toString());
-        _conferenceId = result.getInt(MoverUtils.AllTeamsThing.conferenceId.toString());
-        _record = new Record(result.getString(MoverUtils.AllTeamsThing.overallRec.toString(),"0-12"));
-        _standing = new Standing(result.getString(MoverUtils.AllTeamsThing.coachPollRank.toString(), "UNR"));
+        _teamName = result.getString(MoverUtils.AllTeamsHeaders.name.toString());
+        _conferenceId = result.getInt(MoverUtils.AllTeamsHeaders.conferenceId.toString());
+        _record = new Record(result.getString(MoverUtils.AllTeamsHeaders.overallRec.toString(),"0-12"));
+        _standing = new Standing(result.getString(MoverUtils.AllTeamsHeaders.coachPollRank.toString(), "UNR"));
 
-        _ovr = new OVRRating(result.getString(MoverUtils.AllTeamsThing.overallRating.toString()));
-        _offensiveOvr = new OVRRating(result.getString(MoverUtils.AllTeamsThing.offenseRating.toString()));
-        _defensiveOVr = new OVRRating(result.getString(MoverUtils.AllTeamsThing.defenseRating.toString()));
-        _specialTeamsOvr = new OVRRating(result.getString(MoverUtils.AllTeamsThing.specialTeamRating.toString()));
+        _ovr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.overallRating.toString()));
+        _offensiveOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.offenseRating.toString()));
+        _defensiveOVr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.defenseRating.toString()));
+        _specialTeamsOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.specialTeamRating.toString()));
 
     }
 
@@ -42,16 +44,8 @@ public class Team {
         return _standing;
     }
 
-    public void set_standing(Standing _standing) {
-        this._standing = _standing;
-    }
-
     public String get_teamName() {
         return _teamName;
-    }
-
-    public void set_teamName(String _teamName) {
-        this._teamName = _teamName;
     }
 
     public Conference get_conferenceIn() {
@@ -80,14 +74,24 @@ public class Team {
 
     @Override
     public String toString(){
-        return String.format("%s %s (%s)",_standing,_teamName,_record);
+        return String.format("%s %s (%s)",_standing,_teamName,_record).trim();
     }
+
 
     public int get_conferenceId() {
         return _conferenceId;
     }
 
-    public class Record {
+    @Override
+    public int compareTo(Team that) {
+        if(this._record.compareTo(that._record) == 0){
+            return this.get_ovr().compareTo(that.get_ovr());
+        } else {
+            return this._record.compareTo(that._record);
+        }
+    }
+
+    public class Record implements Comparable<Record>{
         public int wins;
         public int losses;
 
@@ -107,9 +111,14 @@ public class Team {
         public String toString(){
             return String.format("%d-%d",wins,losses);
         }
+
+        @Override
+        public int compareTo(Record that) {
+           return this.wins - that.wins;
+        }
     }
 
-    public class Standing {
+    public class Standing implements Comparable<Standing>{
         public boolean isRanked = false;
         public Integer ranking;
 
@@ -123,6 +132,11 @@ public class Team {
         @Override
         public String toString(){
             return isRanked ? "#" + ranking.toString() : "";
+        }
+
+        @Override
+        public int compareTo(Standing that) {
+            return this.ranking - that.ranking;
         }
     }
 }

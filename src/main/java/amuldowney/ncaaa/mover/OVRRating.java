@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 public class OVRRating implements Comparable<OVRRating>{
     private String ovr;
 

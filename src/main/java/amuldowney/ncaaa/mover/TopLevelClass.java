@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 import com.jaunt.ResponseException;
 
 import java.io.IOException;
@@ -8,7 +10,7 @@ import java.util.List;
  */
 public class TopLevelClass {
 
-    public static void main() throws IOException, ResponseException {
+    public static void main(String[] args) throws IOException, ResponseException {
         EASportsDynastyScraper scraper = new EASportsDynastyScraper();
 
         scraper.Login();

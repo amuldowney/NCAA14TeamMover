@@ -20,6 +20,18 @@
             <artifactId>javax.json</artifactId>
             <version>1.0.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.hp.gagawa</groupId>
+            <artifactId>gagawa</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cedarsoftware</groupId>
+            <artifactId>json-io</artifactId>
+            <version>2.9.0</version>
+        </dependency>
     </dependencies>
 
 

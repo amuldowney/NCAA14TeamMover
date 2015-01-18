@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 import com.jaunt.JauntException;
 import com.jaunt.ResponseException;
 import com.jaunt.UserAgent;

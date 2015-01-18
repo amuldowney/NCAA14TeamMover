@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
@@ -51,6 +53,6 @@ public class LeagueYear {
     }
 
     public void addConferencedTeams(List<Team> teams) {
-        teams.forEach(team ->_conferences.get(MoverUtils.byID(team.get_conferenceId())).addTeam(team));
+        teams.forEach(team -> _conferences.get(MoverUtils.byID(team.get_conferenceId())).addTeam(team));
     }
 }

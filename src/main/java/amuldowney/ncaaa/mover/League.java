@@ -1,3 +1,5 @@
+package amuldowney.ncaaa.mover;
+
 import java.util.Dictionary;
 import java.util.Hashtable;
 
