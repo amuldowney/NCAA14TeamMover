@@ -1,6 +1,4 @@
 import amuldowney.ncaaa.mover.*;
-import com.jaunt.JauntException;
-import com.jaunt.UserAgent;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
@@ -58,7 +56,7 @@ public class NCAATester {
 
     @Test
     public void testDynastyScraper() throws Exception {
-        EASportsDynastyScraper scraper = new EASportsDynastyScraper();
+        EASportsDynastyScraper scraper = new EASportsDynastyScraper("what","no");
 
         scraper.Login();
         List<Team> teams = scraper.GetAllTeamData();
@@ -88,39 +86,19 @@ public class NCAATester {
     }
 
     @Test
-    public void testJauntScrape() throws Exception {
-        try {
-            UserAgent userAgent = new UserAgent();
-            userAgent.visit("http://www.easports.com/dynasty",5);
-            userAgent.doc.apply("muldowney@gatech.edu","!Jamestown11");
-            userAgent.doc.submit();
-            //http://www.easports.com/dynasty/data/all-teams
-            userAgent.visit("http://www.easports.com/dynasty/standings");
-//            Document docLoggedIn = userAgent.sendPOST("https://www.easports.com/dynasty/login_check", "",
-//                    "_username:muldowney@gatech.edu",
-//                    "_password:!Jamestown11",
-//                    "_target_path:/dynasty/home",
-//                    "login:Login"
-//            );
-//
-//            //Document stand = new UserAgent().visit("http://www.easports.com/dynasty/standings");
-//            userAgent.visit("http://www.easports.com/dynasty/teams");
-//            //Document standings = userAgent.doc.getHyperlink("Standings").follow();
-//            //userAgent.visit("http://www.easports.com/dynasty/standings");
-//            //Element div = standings.findFirst("<div class=\"standings\" ng-controller=\"StandingsController\">");
-//
-            System.out.println(userAgent.doc.innerHTML());               //print the document as HTML
-        } catch (JauntException e) {         //if an HTTP/connection error occurs, handle JauntException.
-            System.err.println(e);
-        }
+    public void testTopLevel() throws Exception {
+        String[] args = {"-y","2014","-u", "muldowney@gatech.edu","-pw", "!Jamestown11"};
+        TopLevelClass.main(args);
 
+    }
 
+    @Test
+    public void testRandomAllTeams() throws Exception {
+        RandomAllTeamsData rand = new RandomAllTeamsData();
+        System.out.println(rand.createRandomAllTeamsList());
+    }
 
-
-
-
-}
-   /*
+    /*
    https://www.easports.com/dynasty/login_check
     _username:muldowney@gatech.edu
     _password:!Jamestown11

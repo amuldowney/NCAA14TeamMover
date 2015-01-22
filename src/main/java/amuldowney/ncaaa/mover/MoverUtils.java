@@ -1,5 +1,7 @@
 package amuldowney.ncaaa.mover;
 
+import javax.json.JsonArray;
+import javax.json.JsonObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
@@ -48,6 +50,23 @@ public class MoverUtils {
             }
         }
         return null;
+    }
+
+    public static List<Integer> conferenceIDs(){
+        List<Integer> confIDs = new ArrayList<>(ConferenceNames.values().length);
+        for (ConferenceNames conferenceNames : ConferenceNames.values()) {
+                confIDs.add(conferenceNames.conferenceID);
+        }
+        return confIDs;
+    }
+
+    public static List<Team> parseJsonIntoTeams(JsonObject json){
+        List<Team> teams = new ArrayList<>();
+            JsonArray results = json.getJsonArray("allTeamsList");
+            for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+                teams.add(new Team(result));
+            }
+        return teams;
     }
 
     public enum CSVHeaders {TeamName, confRec, confStanding, coachPollRank, divStanding, overallRec, pointsAgainst, pointsFor, winPercent}

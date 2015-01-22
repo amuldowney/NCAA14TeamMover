@@ -1,9 +1,6 @@
 package amuldowney.ncaaa.mover;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Clues on 1/15/15.
@@ -11,11 +8,11 @@ import java.util.Random;
 public class LeagueYear {
 
     private int _year;
-    private Dictionary<MoverUtils.ConferenceNames, Conference> _conferences;
+    private Map<MoverUtils.ConferenceNames, Conference> _conferences;
 
     public LeagueYear(int _year) {
         this._year = _year;
-        this._conferences = new Hashtable<>();
+        this._conferences = new HashMap<>();
         for (MoverUtils.ConferenceNames conferenceName : MoverUtils.ConferenceNames.values()) {
             _conferences.put(conferenceName, new Conference(conferenceName.toString()));
         }
@@ -29,11 +26,11 @@ public class LeagueYear {
         this._year = _year;
     }
 
-    public Dictionary<MoverUtils.ConferenceNames, Conference> get_conferences() {
+    public Map<MoverUtils.ConferenceNames, Conference> get_conferences() {
         return _conferences;
     }
 
-    public void set_conferences(Dictionary<MoverUtils.ConferenceNames, Conference> _conferences) {
+    public void set_conferences(Map<MoverUtils.ConferenceNames, Conference> _conferences) {
         this._conferences = _conferences;
     }
 
@@ -54,5 +51,7 @@ public class LeagueYear {
 
     public void addConferencedTeams(List<Team> teams) {
         teams.forEach(team -> _conferences.get(MoverUtils.byID(team.get_conferenceId())).addTeam(team));
+
+        _conferences.values().forEach(conf -> Collections.sort(conf.get_teams()));
     }
 }

@@ -41,6 +41,17 @@ public class ConferenceTeamMover {
         private Integer _confGroup;
 
         public UpDownGroup(Map.Entry<Integer,List<Team>> entrySet){
+            List<Team> teams = entrySet.getValue();
+            _confGroup = entrySet.getKey();
+            if(shouldHaveUpTeams()){
+                _upTeams.add(teams.remove(0));
+                _upTeams.add(teams.remove(0));
+            }
+
+            if(shouldHaveDownTeams()){
+                _downTeams.add(teams.remove(teams.size() - 1));
+                _downTeams.add(teams.remove(teams.size() - 1));
+            }
 
         }
 
@@ -49,7 +60,7 @@ public class ConferenceTeamMover {
         }
 
         private boolean shouldHaveDownTeams(){
-            return _confGroup < MoverUtils.ConferenceNames.values().length;
+            return _confGroup + 1 < MoverUtils.ConferenceNames.values().length / 2;
         }
 
 

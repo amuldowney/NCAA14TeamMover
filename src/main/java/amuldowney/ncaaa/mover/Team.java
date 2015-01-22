@@ -2,6 +2,8 @@ package amuldowney.ncaaa.mover;
 
 import javax.json.JsonObject;
 
+import static amuldowney.ncaaa.mover.MoverUtils.AllTeamsHeaders;
+
 /**
  * Created by Clues on 1/15/15.
  */
@@ -18,15 +20,15 @@ public class Team implements Comparable<Team>{
     private OVRRating _specialTeamsOvr;
 
     public Team(JsonObject result) {
-        _teamName = result.getString(MoverUtils.AllTeamsHeaders.name.toString());
-        _conferenceId = result.getInt(MoverUtils.AllTeamsHeaders.conferenceId.toString());
-        _record = new Record(result.getString(MoverUtils.AllTeamsHeaders.overallRec.toString(),"0-12"));
-        _standing = new Standing(result.getString(MoverUtils.AllTeamsHeaders.coachPollRank.toString(), "UNR"));
+        _teamName = result.getString(AllTeamsHeaders.name.toString());
+        _conferenceId = result.getInt(AllTeamsHeaders.conferenceId.toString());
+        _record = new Record(result.getString(AllTeamsHeaders.overallRec.toString(),"0-12"));
+        _standing = new Standing(result.getString(AllTeamsHeaders.coachPollRank.toString(), "UNR"));
 
-        _ovr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.overallRating.toString()));
-        _offensiveOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.offenseRating.toString()));
-        _defensiveOVr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.defenseRating.toString()));
-        _specialTeamsOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.specialTeamRating.toString()));
+        _ovr = new OVRRating(result.getString(AllTeamsHeaders.overallRating.toString()));
+        _offensiveOvr = new OVRRating(result.getString(AllTeamsHeaders.offenseRating.toString()));
+        _defensiveOVr = new OVRRating(result.getString(AllTeamsHeaders.defenseRating.toString()));
+        _specialTeamsOvr = new OVRRating(result.getString(AllTeamsHeaders.specialTeamRating.toString()));
 
     }
 

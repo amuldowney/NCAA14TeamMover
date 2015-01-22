@@ -1,5 +1,4 @@
 import amuldowney.ncaaa.mover.League;
-import amuldowney.ncaaa.mover.Team;
 
 import javax.swing.*;
 
@@ -15,9 +14,6 @@ public class ConferenceDisplays {
 
 
     public void setData(League data) {
-        for(Team X : data.getYear(2014).get_conferences().elements().nextElement().get_teams()){
-            penFifteenTextArea.append(X.get_teamName());
-        }
     }
 
     public void getData(League data) {
