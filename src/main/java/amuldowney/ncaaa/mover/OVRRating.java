@@ -22,16 +22,16 @@ public class OVRRating implements Comparable<OVRRating>{
             return '/';
         }
     }
-    private String signPrescedence = "+/-";
+    private String signPrecedence = "+/-";
 
-    public int getSignPrescedence(){
-        return signPrescedence.indexOf(this.getOVRSign());
+    public int getSignPrecedence(){
+        return signPrecedence.indexOf(this.getOVRSign());
     }
 
     @Override
     public int compareTo(OVRRating that) {
         if(this.getOVRLetter() == that.getOVRLetter()){
-            return this.getSignPrescedence() - that.getSignPrescedence();
+            return this.getSignPrecedence() - that.getSignPrecedence();
         } else {
             return this.getOvr().compareTo(that.getOvr());
         }

@@ -78,10 +78,9 @@ public class NCAATester {
 
         ConferenceTeamMover ctm = new ConferenceTeamMover(league.getYear(2014));
 
+        ctm.GenerateTransitionTeams2();
 
-
-
-        System.out.println(rand.createRandomAllTeamsList());
+        league.getYear(2014).get_conferences().values().forEach(conf -> {System.out.println(conf.get_name());conf.get_teams().forEach(team -> System.out.println(team));});
     }
 
     @Test

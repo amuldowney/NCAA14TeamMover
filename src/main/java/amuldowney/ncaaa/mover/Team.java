@@ -116,7 +116,7 @@ public class Team implements Comparable<Team>{
 
         @Override
         public int compareTo(Record that) {
-           return this.wins - that.wins;
+           return that.wins - this.wins;
         }
     }
 

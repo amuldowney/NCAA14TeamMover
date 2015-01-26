@@ -50,14 +50,15 @@ public class RandomAllTeamsData {
     }
 
     private String RandomGrade(){
-        return grades.get(rand.nextInt(grades.size()-1));
+        return grades.get(rand.nextInt(grades.size()));
     }
 
     private String RandomRanking(){
         if(unusedRankings.isEmpty()){
             return "UNR";
         } else {
-            return "#" + unusedRankings.remove(rand.nextInt(unusedRankings.size())).toString();
+            return "UNR";
+            //return "#" + unusedRankings.remove(rand.nextInt(unusedRankings.size())).toString();
         }
     }
 
@@ -65,11 +66,14 @@ public class RandomAllTeamsData {
         Integer wins = rand.nextInt(13);
         Integer losses = 13-wins;
 
-        return String.format("%s-%s)",wins,losses);
+        return String.format("%s-%s", wins, losses);
     }
 
     private Integer RandomConferenceID(){
-        return confIDs.get(rand.nextInt(confIDs.size()-1));
+        if(confIDs.isEmpty()){
+            confIDs = MoverUtils.conferenceIDs();
+        }
+        return confIDs.remove(rand.nextInt(confIDs.size()));
     }
 
     private static List<Integer> confIDs = MoverUtils.conferenceIDs();
@@ -115,11 +119,6 @@ public class RandomAllTeamsData {
             "UL Lafayette",
             "FIU",
             "Kent State",
-            "FCS East",
-            "FCS West",
-            "FCS Northwest",
-            "FCS Midwest",
-            "FCS Southeast",
             "Air Force",
             "Boston College",
             "Memphis",
@@ -210,14 +209,4 @@ public class RandomAllTeamsData {
             "Washington State",
             "West Virginia");
 
-
-    //jsonarray allTeamsList
-//    _standing = new Standing(result.getString(MoverUtils.AllTeamsHeaders.coachPollRank.toString(), "UNR"));
-//
-//    _ovr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.overallRating.toString()));
-//    _offensiveOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.offenseRating.toString()));
-//    _defensiveOVr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.defenseRating.toString()));
-//    _specialTeamsOvr = new OVRRating(result.getString(MoverUtils.AllTeamsHeaders.specialTeamRating.toString()));
-
-    //object
 }

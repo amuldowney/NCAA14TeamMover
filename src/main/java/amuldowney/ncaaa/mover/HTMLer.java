@@ -13,6 +13,14 @@ public class HTMLer {
 
 
     public static void writeLeagueYear(LeagueYear year){
+       writeLeagueYearWithOptions(year, false);
+    }
+
+    public static void writeLeagueYearTransitions(LeagueYear year){
+        writeLeagueYearWithOptions(year, true);
+    }
+
+    private static void writeLeagueYearWithOptions(LeagueYear year, boolean highlightMoves){
         Document document = new Document(DocumentType.XHTMLStrict);
         for (Conference conference : year.get_conferences().values()) {
             Table confTable = new Table();
@@ -28,21 +36,4 @@ public class HTMLer {
 
         System.out.println( document.write() );
     }
-
-    public static void writeUpAndDownGroups(){
-        Document document = new Document(DocumentType.XHTMLStrict);
-        Table transTable = new Table();
-        transTable.setBorder("1");
-        transTable.appendChild(new Tr().appendText("Conference Moves"));
-
-        //foreach in the list
-
-
-
-
-
-
-
-    }
-
 }
