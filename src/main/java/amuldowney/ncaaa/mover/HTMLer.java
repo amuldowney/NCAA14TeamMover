@@ -28,8 +28,14 @@ public class HTMLer {
             confTable.setBorder("1");
             confTable.appendChild(new Tr().appendText(conference.get_name()));
 
-            for (Team team : conference.get_teams()) {
-                confTable.appendChild(new Tr().appendChild(new Td().appendText(team.toString())));
+            for (int i = 0; i < conference.get_teams().size(); i++) {
+                Team team = conference.get_teams().get(i);
+                Tr row = new Tr().appendChild(new Td().appendText(team.toString()));
+
+                if(highlightMoves && i <= 1) row.setBgcolor("Green");
+                if(highlightMoves && i >= conference.get_teams().size() - 2) row.setBgcolor("Red");
+
+                confTable.appendChild(row);
             }
             document.body.appendChild(confTable);
         }

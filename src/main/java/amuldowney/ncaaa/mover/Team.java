@@ -76,7 +76,7 @@ public class Team implements Comparable<Team>{
 
     @Override
     public String toString(){
-        return String.format("%s %s (%s)",_standing,_teamName,_record).trim();
+        return String.format("%s %s (%s)[%s]",_standing,_teamName,_record,_ovr).trim();
     }
 
 

@@ -91,6 +91,15 @@ public class NCAATester {
         //works
     }
 
+    @Test
+    public void testHTMLRandomTeams() throws Exception {
+        RandomAllTeamsData rand = new RandomAllTeamsData();
+        League league = new League(2014);
+        league.getYear(2014).addConferencedTeams(MoverUtils.parseJsonIntoTeams(rand.createRandomAllTeamsList()));
+
+        HTMLer.writeLeagueYearTransitions(league.getYear(2014));
+    }
+
     /*
    https://www.easports.com/dynasty/login_check
     _username:muldowney@gatech.edu

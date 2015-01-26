@@ -11,11 +11,9 @@ import static amuldowney.ncaaa.mover.MoverUtils.AllTeamsHeaders;
 public class RandomAllTeamsData {
 
     private Random rand = new Random();
-    private List<String> unusedNames = new ArrayList<>();
     private List<Integer> unusedRankings = new ArrayList<>();
 
     public RandomAllTeamsData(){
-        AllNames.forEach(name -> unusedNames.add(name));
         allRankings.forEach(name -> unusedRankings.add(name));
     }
 
@@ -26,9 +24,9 @@ public class RandomAllTeamsData {
         JsonArrayBuilder teamJsonArray = jbf.createArrayBuilder();
 
 
-        for (int i = 0; i < 50 + rand.nextInt(60); i++) {
+        for (String name : AllNames) {
             teamJsonArray.add(jbf.createObjectBuilder()
-                            .add(AllTeamsHeaders.name.name(), RandomName())
+                            .add(AllTeamsHeaders.name.name(), name)
                             .add(AllTeamsHeaders.conferenceId.name(), RandomConferenceID())
                             .add(AllTeamsHeaders.overallRec.name(), RandomRecord())
                             .add(AllTeamsHeaders.coachPollRank.name(), RandomRanking())
@@ -43,10 +41,6 @@ public class RandomAllTeamsData {
 
 
         return jso;
-    }
-
-    private String RandomName(){
-        return unusedNames.remove(rand.nextInt(unusedNames.size()));
     }
 
     private String RandomGrade(){
