@@ -19,7 +19,7 @@ public class RandomAllTeamsData {
         allRankings.forEach(name -> unusedRankings.add(name));
     }
 
-    public String createRandomAllTeamsList(){
+    public JsonObject createRandomAllTeamsList(){
         JsonBuilderFactory jbf = Json.createBuilderFactory(new HashMap<>());
         JsonObjectBuilder objectBuilder = jbf.createObjectBuilder();
 
@@ -42,7 +42,7 @@ public class RandomAllTeamsData {
                 .add("allTeamsList", teamJsonArray).build();
 
 
-        return jso.toString();
+        return jso;
     }
 
     private String RandomName(){

@@ -2,17 +2,14 @@ package amuldowney.ncaaa.mover;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Clues on 1/15/15.
  */
 public class MoverUtils {
 
-    public static Hashtable<Integer,List<ConferenceNames>> ConferenceGroups = new Hashtable<Integer,List<ConferenceNames>>()
+    public static Map<Integer,List<ConferenceNames>> ConferenceGroups = new HashMap<Integer,List<ConferenceNames>>()
     {{
         put(0,new ArrayList<ConferenceNames>(Arrays.asList(ConferenceNames.ACC,ConferenceNames.SEC)));
         put(1,new ArrayList<ConferenceNames>(Arrays.asList(ConferenceNames.BigTen,ConferenceNames.PAC_12)));
@@ -29,10 +26,10 @@ public class MoverUtils {
         PAC_12(10),
         American(3),
         BigTwelve(2),
-        Sunbelt(13),
-        MAC(7),
-        MWC(9),
         C_USA(4),
+        MAC(7),
+        Sunbelt(13),
+        MWC(9),
         Independent(5),
         FCS(17);
 

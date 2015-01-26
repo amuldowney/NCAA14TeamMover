@@ -1,10 +1,7 @@
 import amuldowney.ncaaa.mover.*;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
 import org.junit.Test;
 
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,27 +27,6 @@ public class NCAATester {
 
         assert acc.get_teams().size() == 0;
 
-
-    }
-
-    @org.junit.Test
-    public void testCSV() throws Exception {
-        Reader in = new FileReader("TestData/TeamStandings_CBKool.csv");
-        Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader().parse(in);
-        for (CSVRecord record : records) {
-            String teamName = record.get(MoverUtils.CSVHeaders.TeamName);
-            String teamRec = record.get(MoverUtils.CSVHeaders.overallRec);
-            String teamStanding = record.get(MoverUtils.CSVHeaders.coachPollRank);
-
-            Team nTeam = new Team(teamName,teamRec, teamStanding);
-        }
-    }
-
-    @Test
-    public void testCSVReader() throws Exception {
-        TeamStandingsCSVReader csvReader = new TeamStandingsCSVReader();
-
-        LeagueYear yr = csvReader.ReadInTeamStandings("TestData/TeamStandings_CBKool.csv");
 
     }
 
@@ -95,7 +71,25 @@ public class NCAATester {
     @Test
     public void testRandomAllTeams() throws Exception {
         RandomAllTeamsData rand = new RandomAllTeamsData();
+        League league = new League(2014);
+        league.getYear(2014).addConferencedTeams(MoverUtils.parseJsonIntoTeams(rand.createRandomAllTeamsList()));
+
+        LeagueLoaderSaver.SaveLeague(league,new File("TestData/League.json"));
+
+        ConferenceTeamMover ctm = new ConferenceTeamMover(league.getYear(2014));
+
+
+
+
         System.out.println(rand.createRandomAllTeamsList());
+    }
+
+    @Test
+    public void testConferenceNamesIterator() throws Exception {
+        for (MoverUtils.ConferenceNames conferenceNames : MoverUtils.ConferenceNames.values()) {
+            System.out.println(conferenceNames);
+        }
+        //works
     }
 
     /*
